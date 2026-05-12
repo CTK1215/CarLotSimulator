@@ -1,33 +1,60 @@
 ﻿using System;
 
-namespace CarLotSimulator
+namespace CarLotSimulator;
+
+public class Program
 {
-    class Program
+    public static void Main(string[] args)
     {
-        static void Main(string[] args)
+        CarLot carLot = new CarLot();
+
+        // Style 1: empty constructor + property setters
+        Car car1 = new Car();
+        car1.Year = 2018;
+        car1.Make = "Honda";
+        car1.Model = "Civic";
+        car1.EngineNoise = "vrooom";
+        car1.HonkNoise = "beep beep";
+        car1.IsDriveable = true;
+        carLot.Cars.Add(car1);
+
+        // Style 2: object initializer
+        Car car2 = new Car
         {
-            //TODO
+            Year = 2022,
+            Make = "Ford",
+            Model = "F-150",
+            EngineNoise = "RRRRUMMBLE",
+            HonkNoise = "AH-OOOOGA AH-OOOOGA",
+            IsDriveable = true
+        };
+        carLot.Cars.Add(car2);
 
-            //Create a seperate class file called Car
-            //Car shall have the following properties: Year, Make, Model, EngineNoise, HonkNoise, IsDriveable
-            //Car shall have the following methods: MakeEngineNoise(), MakeHonkNoise()
-            //The methods should take one string parameter: the respective noise property
+        // Style 3: var with object initializer
+        var car3 = new Car
+        {
+            Year = 1995,
+            Make = "Toyota",
+            Model = "Corolla",
+            EngineNoise = "putt putt",
+            HonkNoise = "meep",
+            IsDriveable = false
+        };
+        carLot.Cars.Add(car3);
 
+        car1.MakeEngineNoise(car1.EngineNoise);
+        car1.MakeHonkNoise(car1.HonkNoise);
 
-            //Now that the Car class is created we can instanciate 3 new cars
-            //Set the properties for each of the cars
-            //Call each of the methods for each car
+        car2.MakeEngineNoise(car2.EngineNoise);
+        car2.MakeHonkNoise(car2.HonkNoise);
 
-            //*************BONUS*************//
+        car3.MakeEngineNoise(car3.EngineNoise);
+        car3.MakeHonkNoise(car3.HonkNoise);
 
-            // Set the properties utilizing the 3 different ways we learned about, one way for each car
-
-            //*************BONUS X 2*************//
-
-            //Create a CarLot class
-            //It should have at least one property: a List of cars
-            //Instanciate the a Carlot at the beginning of the program and as you create a car add the car to the list.
-            //At the end iterate through the list printing each of car's Year, Make, and Model to the console
+        Console.WriteLine("\nCars in the lot:");
+        foreach (Car car in carLot.Cars)
+        {
+            Console.WriteLine($"{car.Year} {car.Make} {car.Model}");
         }
     }
 }
